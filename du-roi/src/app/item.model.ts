@@ -2,13 +2,15 @@ export class Item {
     private _id : string;
     private _name : string;
     private _description : string;
+    private _image : string;
     private _price : number;
 
-    constructor(id : string, name : string, description : string, price : number)
+    constructor(id : string, name : string, description : string, image : string, price : number)
     {
         this._id = id;
         this._name = name;
         this._description = description;
+        this._image = image;
         this._price = price;
     }
 
@@ -30,6 +32,11 @@ export class Item {
     get price() : number
     {
         return this._price;
+    }
+
+    get image() : string
+    {
+        return this._image;
     }
 
 }

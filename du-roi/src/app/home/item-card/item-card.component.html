@@ -1,8 +1,11 @@
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="assets/img/items/{{product.id}}" alt="Card image cap">
+    <img class="card-img-top" src="assets/img/items/{{product.image}}" alt="{{ product.description }}">
     <div class="card-body">
       <h5 class="card-title">{{ product.name}}</h5>
       <p class="card-text">{{ product.description }}</p>
-      <a href="#" class="btn btn-primary">Toevoegen aan mandje</a>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">&euro;{{ product.price }}</li>
+      </ul>
+      <a href="#" class="btn btn-primary">Toevoegen aan winkelwagen</a>
     </div>
   </div>

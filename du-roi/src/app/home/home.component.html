@@ -13,13 +13,5 @@
 <!-- De items -->
 <p class="text-center" style="font-size: 28pt;">Producten</p>
 <div class="card-group justify-content-center">    
-    <item-card></item-card>
-    <item-card></item-card>
-    <item-card></item-card>
-    <item-card></item-card>
-    <item-card></item-card>
-    <item-card></item-card>
-    <item-card></item-card>
-    <item-card></item-card>
-    <item-card></item-card>
+    <item-card *ngFor="let item of producten" [productInput]="item"></item-card>
 </div>

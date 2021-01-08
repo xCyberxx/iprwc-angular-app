@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Item } from 'src/app/item.model';
 
 @Component({
@@ -12,9 +12,13 @@ export class ItemCardComponent implements OnInit {
 
   constructor() { }
 
+  @Input() productInput : Item;
+
   ngOnInit(): void {
-    console.log("created item");
-    this.product = new Item("chair2.jpg", "Franse Empire Stoel", "Deze prachtige franse empire stoel is gemaakt in 1813", 149.99);
+    // console.log("created item");
+    //this.product = new Item("idrandom", "Franse Empire Stoel", "Deze prachtige franse empire stoel is gemaakt in 1813", "chair2.jpg", 149.99);
+    // console.log(this.productInput);
+    this.product = this.productInput;
   }
 
 }
