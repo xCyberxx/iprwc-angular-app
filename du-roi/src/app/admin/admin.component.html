@@ -1,0 +1,7 @@
+<!-- De items -->
+<button type="button" class="btn btn-success float-right" routerLink="add">+ Product Toevoegen</button>
+<p class="text-center" style="font-size: 28pt;">Producten Beheren</p>
+<hr>
+<div class="card-group justify-content-center">    
+    <admin-item-card *ngFor="let item of producten" [productInput]="item" (reloadItems)="loadItems()"></admin-item-card>
+</div>

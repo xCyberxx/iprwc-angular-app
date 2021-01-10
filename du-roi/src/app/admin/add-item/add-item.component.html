@@ -1,0 +1,21 @@
+<form (ngSubmit)="onAddItem(form)" #form="ngForm">
+    <div class="form-group">
+      <label for="productName">Naam</label>
+      <input type="text" class="form-control" id="productName" aria-describedby="productNameHelp" placeholder="Voer product naam in" name="productName" ngModel>
+      <!-- <small id="productNameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+    </div>
+    <div class="form-group">
+      <label for="productDescription">Beschrijving</label>
+      <input type="text" class="form-control" id="productDescription" placeholder="Beschrijving" name="productDescription" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="productImage">Product foto</label>
+        <input type="text" class="form-control" id="productImage" aria-describedby="productImageHelp" placeholder="defaultimg.png" name="productImage" ngModel>
+        <small id="productImageHelp" class="form-text text-muted">Gebruikt anders een standaard foto genaamd defaultimg.png</small>
+    </div>
+    <div class="form-group">
+        <label for="productPrice">Prijs</label>
+        <input type="number" class="form-control" id="productPrice" placeholder="Prijs" name="productPrice" ngModel>
+    </div>
+    <button type="submit" class="btn btn-primary">Product Aanpassen</button>
+  </form>

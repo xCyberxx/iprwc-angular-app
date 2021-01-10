@@ -1,9 +1,9 @@
 main
 {
-    background-image: url("/assets/img/background.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    background-image: url("/assets/img/background.png");
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+    /* background-position: center; */
     height: 100%;
 }
 

@@ -6,6 +6,8 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item">&euro;{{ product.price }}</li>
       </ul>
-      <a class="btn btn-primary" (click)="onClickAdd()">Toevoegen aan winkelwagen</a>
+      <!-- <a class="btn btn-primary" (click)="onClick()">Aanpassen</a> -->
+      <button type="button" class="btn btn-warning" routerLink="edit/{{product.id}}">Aanpassen</button>
+      <button type="button" class="btn btn-danger" (click)="onClickDelete()">Verwijderen</button>
     </div>
   </div>
