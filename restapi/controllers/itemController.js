@@ -14,24 +14,24 @@ exports.getAllItems = (req, res) => {
     });
 };
 
-exports.createItem = async (req, res) => {
-    // if (!await checkLoginToken(req, res)) return;
+// exports.createItem = async (req, res) => {
+//     // if (!await checkLoginToken(req, res)) return;
 
-    const {name, description, image, price} = req.body;
-    // const id = uid.createID();
+//     const {name, description, image, price} = req.body;
+//     // const id = uid.createID();
 
-    if (typeof name === 'undefined' || name === '') { // uitbreiden in condities
-        return res.status(200).json({error: true});
-    }
+//     if (typeof name === 'undefined' || name === '') { // uitbreiden in condities
+//         return res.status(200).json({error: true});
+//     }
 
-    db.query(`INSERT INTO ${TABLE} (name, description, image, price) VALUES (${mysql.escape(name)}, ${mysql.escape(description)}, ${mysql.escape(image)}, ${mysql.escape(price)});`, function (err, result) {
-        if (err) return res.status(200).json({error: true});
-        res.status(200).json({
-            result: result.affectedRows === 1,
-            id: id
-        });
-    });
-};
+//     db.query(`INSERT INTO ${TABLE} (name, description, image, price) VALUES (${mysql.escape(name)}, ${mysql.escape(description)}, ${mysql.escape(image)}, ${mysql.escape(price)});`, function (err, result) {
+//         if (err) return res.status(200).json({error: true});
+//         res.status(200).json({
+//             result: result.affectedRows === 1,
+//             id: id
+//         });
+//     });
+// };
 
 exports.getItem = (req, res) => {
     const {id} = req.params;
@@ -49,7 +49,7 @@ exports.getItem = (req, res) => {
 };
 
 exports.updateItem = async (req, res) => {
-    // if (!await checkLoginToken(req, res)) return;
+    if (!await checkLoginToken(req, res, "admin")) return;
 
     const {id, name, description, image, price} = req.body;
     let updateStatements = [];
@@ -80,7 +80,7 @@ exports.updateItem = async (req, res) => {
 };
 
 exports.createItem = async (req, res) => {
-    // if (!await checkLoginToken(req, res)) return;
+    if (!await checkLoginToken(req, res, "admin")) return;
 
     var {name, description, image, price} = req.body;
     // const id = uid.createID();
@@ -110,7 +110,7 @@ exports.createItem = async (req, res) => {
 };
 
 exports.deleteItem = async (req, res) => {
-    // if (!await checkLoginToken(req, res)) return;
+    if (!await checkLoginToken(req, res, 'admin')) return;
 
     const {id} = req.body;
 

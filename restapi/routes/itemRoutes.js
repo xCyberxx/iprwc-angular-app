@@ -6,18 +6,18 @@ const itemController = require('../controllers/itemController');
 router.get("/all", itemController.getAllItems);
 
 // POST /item/create
-router.get("/create", itemController.createItem);
+// router.get("/create", itemController.createItem); // protected
 
 // GET /item/:id
 router.get('/:id', itemController.getItem);
 
 // POST /item/update
-router.post('/update', itemController.updateItem);
+router.post('/update', itemController.updateItem); // protected
 
 // POST /item/create
-router.post('/create', itemController.createItem);
+router.post('/create', itemController.createItem); //protected
 
 // POST /item/delete
-router.post('/delete', itemController.deleteItem);
+router.post('/delete', itemController.deleteItem); // protected
 
 module.exports = router;

@@ -8,10 +8,10 @@ export class Api {
 
   static getApi(): AxiosInstance {
     return axios.create({
-      baseURL: this.apiServerUrl
-    //   headers: {
-    //     Authorization: 'Bearer ' + Cookie.get('user_token'),
-    //   }
+      baseURL: this.apiServerUrl,
+      headers: {
+        Authorization: 'Bearer ' + Cookie.get('user_token'),
+      }
     });
   }
 }

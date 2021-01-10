@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSignup(form)" #form="ngForm">
+    <div class="form-group">
+      <label for="productName">Email</label>
+      <input type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" name="email" ngModel>
+      <!-- <small id="productNameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+    </div>
+    <div class="form-group">
+      <label for="productDescription">Voornaam</label>
+      <input type="text" class="form-control" id="firstname" placeholder="Voornaam" name="firstname" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="productDescription">Achternaam</label>
+        <input type="text" class="form-control" id="lastname" placeholder="achternaam" name="lastname" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="productDescription">Wachtwoord</label>
+        <input type="text" class="form-control" id="password" placeholder="wachtwoord" name="password" ngModel>
+    </div>
+    <!-- Toevoegen dubbele wachtwoord, om te checken.-->
+    <button type="submit" class="btn btn-primary">Registreren</button>
+  </form>

@@ -13,12 +13,16 @@ import { EditItemComponent } from './admin/edit-item/edit-item.component';
 import { AddItemComponent } from './admin/add-item/add-item.component';
 import { FormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 const appRoutes : Routes = [
   {path: '', component: HomeComponent },
   {path: 'admin', component: AdminComponent },
   {path: 'admin/edit/:id', component: EditItemComponent },
-  {path: 'admin/add', component: AddItemComponent }
+  {path: 'admin/add', component: AddItemComponent },
+  {path: 'signup', component: SignupComponent },
+  {path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
@@ -31,7 +35,9 @@ const appRoutes : Routes = [
     AdminComponent,
     AdminItemCardComponent,
     EditItemComponent,
-    AddItemComponent
+    AddItemComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
