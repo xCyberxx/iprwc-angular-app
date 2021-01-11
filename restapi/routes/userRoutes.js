@@ -8,6 +8,9 @@ router.post('/create', userController.createUser);
 // POST /user/checkUserCredentials
 router.post('/checkUserCredentials', userController.checkUserCredentials);
 
+// POST /user/update
+router.post('/update', userController.updateUser);
+
 // // GET /user/all
 // router.get('/all', userController.getAllUsers);
 

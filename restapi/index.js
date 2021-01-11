@@ -6,6 +6,7 @@ const cors = require('cors')
 
 const itemRoutes = require('./routes/itemRoutes');
 const userRoutes = require('./routes/userRoutes');
+const cartRoutes = require('./routes/cartRoutes');
 
 app.use((req, res, next) => {
     const allowedOrigins = [ 'http://localhost:4200', 'http://localhost:3000'];
@@ -29,6 +30,7 @@ app.use(
 
 app.use('/item', itemRoutes);
 app.use('/user', userRoutes);
+app.use('/cart', cartRoutes);
 
 app.use((error, req, res, next) => {
     console.log(error);

@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
       },
     }).then((result) => {
 
-    })
+    });
     console.log("Attempted to login.");
   }
 }

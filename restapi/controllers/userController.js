@@ -75,3 +75,31 @@ exports.checkUserCredentials = (req, res) => {
         });
     });
 };
+
+exports.updateUser = async (req, res) => {
+    if (!await checkLoginToken(req, res)) return;
+
+    const {id, email, firstname, lastname, password} = req.body;
+    let updateStatements = [];
+
+    if (typeof id === 'undefined' || id === '') {
+        return res.status(200).json({error: true});
+    }
+    if (typeof firstname !== 'undefined' && firstname !== '') {
+        updateStatements.push(`firstname = ${mysql.escape(firstname)}`);
+    }
+    if (typeof lastname !== 'undefined' && lastname !== '') {
+        updateStatements.push(`lastname = ${mysql.escape(lastname)}`);
+    }
+    if (typeof password !== 'undefined' && password !== '') {
+        const password_hash = await hashPassword(password);
+        updateStatements.push(`password_hash = ${mysql.escape(password_hash)}`);
+    }
+
+    db.query(`UPDATE ${TABLE} SET ${updateStatements.join(',')} WHERE id = ${mysql.escape(id)} AND email = ${mysql.escape(email)};`, function (err, result) {
+        if (err) return res.status(200).json({error: true});
+        res.status(200).json({
+            result: result.affectedRows >= 1
+        });
+    });
+};

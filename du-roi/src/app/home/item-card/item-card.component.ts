@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Cart } from 'src/app/cart';
 import { Item } from 'src/app/item.model';
+import { User } from 'src/app/user.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -30,20 +32,49 @@ export class ItemCardComponent implements OnInit {
 
   onClickAdd() : void
   {
-    let timerInterval;
-    Swal.fire({
-      title: 'Toegevoegd aan winkelmandje',
-      // html: 'Artikel toegevoegd aan winkelmandje!',
-      icon: "success",
-      timer: 1000,
-      timerProgressBar: true,
-      showConfirmButton: false,
-      didOpen: () => {
-        
-      },
-    }).then((result) => {
+    const user = User.getLoggedInUser();
 
-    })
+    if(user)
+    {
+      //ingelogd
+
+      let timerInterval;
+      Swal.fire({
+        title: 'Toegevoegd aan winkelmandje',
+        // html: 'Artikel toegevoegd aan winkelmandje!',
+        icon: "success",
+        timer: 1000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        didOpen: () => {
+          
+        },
+      }).then((result) => {
+
+      })  
+
+      Cart.addToCart(user.id, this.product.id);
+
+    }
+    else
+    {
+      //niet ingelogd
+      Swal.fire({
+        title: 'Inloggen vereist',
+        // html: 'Artikel toegevoegd aan winkelmandje!',
+        icon: "error",
+        timer: 1000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        didOpen: () => {
+          
+        },
+      }).then((result) => {
+
+      })
+    }
+
+    
   }
 
 }

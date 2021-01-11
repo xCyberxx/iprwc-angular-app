@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Api } from '../api/api';
 import { User } from '../user.model';
 
@@ -10,16 +12,30 @@ import { User } from '../user.model';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
   }
 
-  onSignup(form : NgForm)
+  async onSignup(form : NgForm)
   {
     const value = form.value;
-    User.createUser(value.email, value.firstname, value.lastname, value.password);
+    await User.createUser(value.email, value.firstname, value.lastname, value.password);
     console.log("Done creating..");
+    Swal.fire({
+      title: 'Geregisteerd',
+      // html: 'Artikel toegevoegd aan winkelmandje!',
+      icon: "success",
+      timer: 1000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      didOpen: () => {
+        
+      },
+    }).then((result) => {
+
+    });
+    this.router.navigateByUrl("/login");
   }
 
 }

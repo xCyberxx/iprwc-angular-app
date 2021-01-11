@@ -37,9 +37,17 @@ export class User {
     get firstName(): string {
       return this._firstname;
     }
+
+    set firstName(nfirstName : string) {
+      this._firstname = nfirstName;
+    }
   
     get lastName(): string {
       return this._lastname;
+    }
+
+    set lastName(nlastName : string) {
+      this._lastname = nlastName;
     }
 
     static async createUser(nEmail : string, nFirstname : string, nLastname : string, nPassword : string) : Promise<number>
@@ -49,6 +57,18 @@ export class User {
         console.log(postData);
         await api.post('/user/create', postData).then((response) => {
             console.log("Created user");
+        });
+        return 1
+    }
+
+    static async updateUser(nId: string, nEmail : string, nFirstname : string, nLastname : string, nPassword : string) : Promise<number>
+    {
+        const api = Api.getApi();
+        const postData = {id: nId, email: nEmail, firstname: nFirstname, lastname: nLastname, password: nPassword};
+        console.log("updating user.");
+        console.log(postData);
+        await api.post('/user/update', postData).then((response) => {
+            console.log("updated user");
         });
         return 1
     }

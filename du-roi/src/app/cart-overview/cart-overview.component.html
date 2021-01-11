@@ -1,0 +1,21 @@
+<h1>Winkelwagen</h1>
+<div *ngIf="cart != null">
+    <!-- <app-cart-item ></app-cart-item> -->
+    <!-- <app-cart-item *ngFor="let item of cart.items" [productInput]="item"></app-cart-item> -->
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Naam</th>
+            <!-- <th scope="col">Last</th> -->
+            <th scope="col">Prijs (&euro;)</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            <!-- <app-cart-item *ngFor="let item of cart.items" [productInput]="item"></app-cart-item> -->
+            <tr *ngFor="let item of cart.items" [productInput]="item" cart-item-comp (reloadItems)="loadItems()" [cart_id]="item.cart_id"></tr>
+        </tbody>
+        
+      </table>
+</div>

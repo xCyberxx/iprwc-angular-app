@@ -15,6 +15,9 @@ import { FormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { CartOverviewComponent } from './cart-overview/cart-overview.component';
+import { CartItemComponent } from './cart-overview/cart-item/cart-item.component';
 
 const appRoutes : Routes = [
   {path: '', component: HomeComponent },
@@ -22,7 +25,9 @@ const appRoutes : Routes = [
   {path: 'admin/edit/:id', component: EditItemComponent },
   {path: 'admin/add', component: AddItemComponent },
   {path: 'signup', component: SignupComponent },
-  {path: 'login', component: LoginComponent }
+  {path: 'login', component: LoginComponent },
+  {path: 'user', component: EditUserComponent },
+  {path: 'cart', component: CartOverviewComponent }
 ];
 
 @NgModule({
@@ -37,7 +42,10 @@ const appRoutes : Routes = [
     EditItemComponent,
     AddItemComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    EditUserComponent,
+    CartOverviewComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,

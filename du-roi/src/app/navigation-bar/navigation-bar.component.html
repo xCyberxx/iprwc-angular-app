@@ -7,8 +7,10 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> <!-- kan later weg om met databinding de search te doen-->
     </form>
 
+    <a class="navbar-brand ml-auto" routerLink="/signup" *ngIf="user == null">Registreren</a>
     <a class="navbar-brand ml-auto" routerLink="/login" *ngIf="user == null">Login</a>
     <a class="navbar-brand ml-auto" routerLink="/admin" *ngIf="user && user.userGroup == 'admin'">Admin</a>
-    <a class="navbar-brand ml-auto" routerLink="/customer" *ngIf="user && user.userGroup == 'customer'">Profile</a>
+    <a class="navbar-brand ml-auto" routerLink="/cart" *ngIf="user && user.userGroup == 'customer'">Winkelwagen</a>
+    <a class="navbar-brand ml-auto" routerLink="/user" *ngIf="user && user.userGroup == 'customer'">Profiel</a>
     <a class="navbar-brand ml-auto" (click)="onLogout()" *ngIf="user != null">Logout</a>
 </nav>

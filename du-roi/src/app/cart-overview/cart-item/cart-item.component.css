@@ -1,0 +1,11 @@
+img
+{
+    width: 100px;;
+}
+
+.outerbox
+{
+    margin: 10px 10px 10px 10px;
+    border: 1px solid black;
+    padding: 5px 5px 5px 5px;
+}
