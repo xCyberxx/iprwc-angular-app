@@ -29,4 +29,7 @@ router.get('/get/:id', cartController.getItemsFromId);
 // POST /cart/delete
 router.post('/delete', cartController.deleteCartItem); // protected
 
+// POST /cart/pay
+router.post('/pay', cartController.payCartItems); // protected
+
 module.exports = router;

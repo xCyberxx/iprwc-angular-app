@@ -21,10 +21,27 @@ export class LoginComponent implements OnInit {
     const value = form.value;
     let result = await User.Login(value.email, value.password);
     console.log(result);
-    console.log(User.getLoggedInUser().userGroup);
+    const user = User.getLoggedInUser();
+    if(!user)
+    {
+      Swal.fire({
+        title: 'Onjuiste inloggegevens',
+        // html: 'Artikel toegevoegd aan winkelmandje!',
+        icon: "error",
+        timer: 1000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        didOpen: () => {
+          
+        },
+      }).then((result) => {
+  
+      });
+    }
+    console.log(user.userGroup);
     if(result) // is 1
     {
-      switch(User.getLoggedInUser().userGroup)
+      switch(user.userGroup)
       {
         case 'admin':
           this.router.navigateByUrl("/admin");

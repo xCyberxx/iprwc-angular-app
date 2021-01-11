@@ -5,7 +5,7 @@
     <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">#</th>
+            <th scope="col"></th>
             <th scope="col">Naam</th>
             <!-- <th scope="col">Last</th> -->
             <th scope="col">Prijs (&euro;)</th>
@@ -15,6 +15,13 @@
         <tbody>
             <!-- <app-cart-item *ngFor="let item of cart.items" [productInput]="item"></app-cart-item> -->
             <tr *ngFor="let item of cart.items" [productInput]="item" cart-item-comp (reloadItems)="loadItems()" [cart_id]="item.cart_id"></tr>
+
+            <tr>
+              <th></th>
+              <td></td>
+              <td>Totaal: &euro;{{ cart.totalSum }}</td>
+              <td><button type="button" class="btn btn-success" (click)="onPay()">Betalen</button></td>
+            </tr>
         </tbody>
         
       </table>

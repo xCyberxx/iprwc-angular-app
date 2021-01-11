@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Cart } from 'src/app/cart';
+import { Cart } from 'src/app/cart.model';
 import { Item } from 'src/app/item.model';
 import { User } from 'src/app/user.model';
 import Swal from 'sweetalert2';
@@ -30,13 +30,32 @@ export class ItemCardComponent implements OnInit {
 
   }
 
-  onClickAdd() : void
+  async onClickAdd() : Promise<void>
   {
     const user = User.getLoggedInUser();
 
     if(user)
     {
+      if(user.userGroup != "customer") // geen klant
+      {
+        Swal.fire({
+          title: 'U bent geen klant',
+          // html: 'Artikel toegevoegd aan winkelmandje!',
+          icon: "error",
+          timer: 1500,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          didOpen: () => {
+            
+          },
+        }).then((result) => {
+  
+        })
+        return;
+      }
+
       //ingelogd
+      await Cart.addToCart(user.id, this.product.id);
 
       let timerInterval;
       Swal.fire({
@@ -52,8 +71,6 @@ export class ItemCardComponent implements OnInit {
       }).then((result) => {
 
       })  
-
-      Cart.addToCart(user.id, this.product.id);
 
     }
     else
@@ -71,7 +88,7 @@ export class ItemCardComponent implements OnInit {
         },
       }).then((result) => {
 
-      })
+      });
     }
 
     

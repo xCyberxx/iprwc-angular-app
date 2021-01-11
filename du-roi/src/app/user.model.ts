@@ -55,10 +55,21 @@ export class User {
         const api = Api.getApi();
         const postData = {email: nEmail, firstname: nFirstname, lastname: nLastname, password: nPassword};
         console.log(postData);
-        await api.post('/user/create', postData).then((response) => {
-            console.log("Created user");
+        let status = 0;
+        try {
+          await api.post('/user/create', postData).then((response) => {
+            console.log("creating user");
+            console.log(response);
+            if(response.data.result)
+            {
+              status = 1;
+            }
         });
-        return 1
+        } catch (error) {
+          return 0;
+        }
+        
+        return status;
     }
 
     static async updateUser(nId: string, nEmail : string, nFirstname : string, nLastname : string, nPassword : string) : Promise<number>

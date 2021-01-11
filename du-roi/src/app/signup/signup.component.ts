@@ -20,7 +20,29 @@ export class SignupComponent implements OnInit {
   async onSignup(form : NgForm)
   {
     const value = form.value;
-    await User.createUser(value.email, value.firstname, value.lastname, value.password);
+    let result : number;
+    await User.createUser(value.email, value.firstname, value.lastname, value.password).then(response => {
+      result = response;
+    });
+    console.log(result);
+    if (result == 0)
+    {
+      //niet geregistreerd.
+      Swal.fire({
+        title: 'Informatie ongeldig.',
+        // html: 'Artikel toegevoegd aan winkelmandje!',
+        icon: "error",
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        didOpen: () => {
+          
+        },
+      }).then((result) => {
+  
+      });
+      return;
+    }
     console.log("Done creating..");
     Swal.fire({
       title: 'Geregisteerd',

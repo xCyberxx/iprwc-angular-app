@@ -60,3 +60,21 @@ exports.deleteCartItem = async (req, res) => {
 
     // databaseHelper.cleanUnusedCollectionData();
 };
+
+exports.payCartItems = async (req, res) => {
+    if (!await checkLoginToken(req, res)) return;
+
+    const {user_id} = req.body;
+    let updateStatements = [];
+
+    if (typeof user_id === 'undefined') {
+        return res.status(200).json({error: true});
+    }
+
+    db.query(`UPDATE ${TABLE} SET isActive=0 WHERE user_id = ${mysql.escape(user_id)} AND isActive = 1`, function (err, result) {
+        if (err) return res.status(200).json({error: true});
+        res.status(200).json({
+            result: result.affectedRows >= 1
+        });
+    });
+};

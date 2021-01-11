@@ -3,15 +3,35 @@ import { Item } from "./item.model";
 
 export class Cart {
     private _items : Item[] = [];
+    private _totalsum : number = 0;
 
     get items()
     {
         return this._items;
     }
+    
+    get totalSum()
+    {
+        return this._totalsum;
+    }
+
+    set totalSum(value : number)
+    {
+        this._totalsum = value;
+    }
+
+    calculateSum()
+    {
+        this._totalsum = 0;
+        this._items.forEach(element => {
+            this._totalsum += element.price;
+        });
+    }
 
     addItem(nItem : Item)
     {
         this._items.push(nItem);
+        this.calculateSum();
     }
 
     static async addToCart(nUserId: string, nProductId : string) : Promise<number>
@@ -36,6 +56,9 @@ export class Cart {
             console.log(response);
             cart = new Cart();
             //aanmaken cart item
+            if (response.data.result == false)
+                return;
+
             response.data.result.forEach(async element => { // loop alle elementen binnen de item tabel
                 console.log(element);
                 // this._items.push(new Item(element.id, element.name, element.description, element.image, element.price));
@@ -62,6 +85,17 @@ export class Cart {
         console.log(postData);
         await api.post('/cart/delete', postData).then((response) => {
             console.log("deleted itemcart");
+        });
+        return 1
+    }
+
+    static async payCart(nUserId: string) : Promise<number>
+    {
+        const api = Api.getApi();
+        const postData = {user_id: nUserId};
+        console.log(postData);
+        await api.post('/cart/pay', postData).then((response) => {
+            console.log("Created itemcart");
         });
         return 1
     }
