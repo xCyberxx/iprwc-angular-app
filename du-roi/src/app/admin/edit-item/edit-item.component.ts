@@ -29,10 +29,10 @@ export class EditItemComponent implements OnInit {
       
   }
 
-  onEditItem(form : NgForm)
+  async onEditItem(form : NgForm)
   {
     const value = form.value;
-    this.currentProduct.updateItem(value.productName, value.productDescription, value.productImage, value.productPrice);
+    await this.currentProduct.updateItem(value.productName, value.productDescription, value.productImage, value.productPrice);
 
     this.router.navigateByUrl("/admin");
   }

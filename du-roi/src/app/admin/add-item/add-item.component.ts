@@ -24,10 +24,10 @@ export class AddItemComponent implements OnInit {
     //   });
   }
 
-  onAddItem(form : NgForm) : void
+  async onAddItem(form : NgForm) : Promise<void>
   {
     const value = form.value;
-    Item.createItem(value.productName, value.productDescription, value.productImage, value.productPrice);
+    await Item.createItem(value.productName, value.productDescription, value.productImage, value.productPrice);
     
     this.router.navigateByUrl("/admin");
   }
