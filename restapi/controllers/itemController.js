@@ -1,6 +1,5 @@
 const mysql = require("mysql");
 const db = require('../db');
-const uid = require('../utils/uid');
 const {checkLoginToken} = require("../utils/authManager");
 
 const TABLE = 'item';

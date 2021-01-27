@@ -1,10 +1,8 @@
 const mysql = require("mysql");
 const db = require('../db');
-const uid = require('../utils/uid');
 const {checkLoginToken} = require("../utils/authManager");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-// const mailSender = require('../controllers/mailController')
 const authManager = require('../utils/authManager');
 
 
