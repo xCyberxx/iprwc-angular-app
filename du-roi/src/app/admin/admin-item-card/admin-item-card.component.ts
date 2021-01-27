@@ -42,21 +42,22 @@ export class AdminItemCardComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Bevestigen',
       cancelButtonText: 'Annuleren'
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
 
-        Item.deleteItem(this.product.id);
+        await Item.deleteItem(this.product.id);
         Swal.fire(
           'Verwijderd!',
           'Het artikel is verwijderd.',
           'success'
         );
         // Herladen items na verwijderen
-        setTimeout(() => 
-        {
-          this.reloadItems.emit();
-        },
-        500);
+        this.reloadItems.emit();
+        // setTimeout(() => 
+        // {
+        //   this.reloadItems.emit();
+        // },
+        // 500);
         
       }
     })
