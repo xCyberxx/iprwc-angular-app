@@ -13,25 +13,6 @@ exports.getAllItems = (req, res) => {
     });
 };
 
-// exports.createItem = async (req, res) => {
-//     // if (!await checkLoginToken(req, res)) return;
-
-//     const {name, description, image, price} = req.body;
-//     // const id = uid.createID();
-
-//     if (typeof name === 'undefined' || name === '') { // uitbreiden in condities
-//         return res.status(200).json({error: true});
-//     }
-
-//     db.query(`INSERT INTO ${TABLE} (name, description, image, price) VALUES (${mysql.escape(name)}, ${mysql.escape(description)}, ${mysql.escape(image)}, ${mysql.escape(price)});`, function (err, result) {
-//         if (err) return res.status(200).json({error: true});
-//         res.status(200).json({
-//             result: result.affectedRows === 1,
-//             id: id
-//         });
-//     });
-// };
-
 exports.getItem = (req, res) => {
     const {id} = req.params;
 
@@ -82,7 +63,6 @@ exports.createItem = async (req, res) => {
     if (!await checkLoginToken(req, res, "admin")) return;
 
     var {name, description, image, price} = req.body;
-    // const id = uid.createID();
 
     if (typeof name === 'undefined' || name === '') {
         return res.status(200).json({error: true});
@@ -91,7 +71,6 @@ exports.createItem = async (req, res) => {
         return res.status(200).json({error: true});
     }
     if (typeof image === 'undefined' || image === '') {
-         //return res.status(200).json({error: true});
          image = "defaultimg.png";
          console.log('setting default image');
      }
@@ -103,7 +82,6 @@ exports.createItem = async (req, res) => {
         if (err) return res.status(200).json({error: true});
         res.status(200).json({
             result: result.affectedRows === 1,
-            // id: id
         });
     });
 };
@@ -124,5 +102,4 @@ exports.deleteItem = async (req, res) => {
         });
     });
 
-    // databaseHelper.cleanUnusedCollectionData();
 };

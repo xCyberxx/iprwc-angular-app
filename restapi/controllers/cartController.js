@@ -8,7 +8,6 @@ exports.createCartItem = async (req, res) => {
     if (!await checkLoginToken(req, res)) return;
 
     var {user_id, product_id} = req.body;
-    // const id = uid.createID();
 
     if (typeof user_id === 'undefined' || user_id === '') {
         return res.status(200).json({error: true});
@@ -21,7 +20,6 @@ exports.createCartItem = async (req, res) => {
         if (err) return res.status(200).json({error: true});
         res.status(200).json({
             result: result.affectedRows === 1,
-            // id: id
         });
     });
 };
@@ -56,8 +54,6 @@ exports.deleteCartItem = async (req, res) => {
             result: result.affectedRows >= 1
         });
     });
-
-    // databaseHelper.cleanUnusedCollectionData();
 };
 
 exports.payCartItems = async (req, res) => {

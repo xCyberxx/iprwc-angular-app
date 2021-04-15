@@ -5,8 +5,6 @@ const itemController = require('../controllers/itemController');
 // GET /item/all
 router.get("/all", itemController.getAllItems);
 
-// POST /item/create
-// router.get("/create", itemController.createItem); // protected
 
 // GET /item/:id
 router.get('/:id', itemController.getItem);

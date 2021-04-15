@@ -19,13 +19,9 @@ async function hashPassword(password) {
 
 
 exports.createUser = async (req, res) => {
-    // if (!await checkLoginToken(req, res)) return;
 
     const {email, firstname, lastname, password} = req.body;
     const user_group = "customer";
-    // const id = uid.createID();
-
-    // console.log(email, firstname, lastname, password, user_group);
 
     if (typeof email === 'undefined' || typeof firstname === 'undefined' || typeof lastname === 'undefined' || typeof password === 'undefined' || typeof user_group === 'undefined') {
         return res.status(400).json({error: true});
