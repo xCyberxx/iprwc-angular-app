@@ -1,29 +1,10 @@
-<form (ngSubmit)="onUpdate(form)" #form="ngForm">
-    <div class="form-group">
-      <label for="productDescription">Voornaam</label>
-      <input type="text" class="form-control" id="firstname" placeholder="Voornaam" name="firstname" [(ngModel)]="user.firstName">
-    </div>
-    <div class="form-group">
-        <label for="productDescription">Achternaam</label>
-        <input type="text" class="form-control" id="lastname" placeholder="Achternaam" name="lastname" [(ngModel)]="user.lastName">
-    </div>
-    <div class="form-group">
-        <label for="productDescription">Wachtwoord</label>
-        <input type="password" class="form-control" id="password" placeholder="wachtwoord" name="password" ngModel>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Wijzigen</button>
-</form>
-
-
-<!-- Hieronder de bestellingen -->
-
-<h1>Mijn Bestellingen</h1>
+<h1>Bestelling Overzicht</h1>
 <div *ngIf="orders != null">
     <!-- <app-cart-item ></app-cart-item> -->
     <!-- <app-cart-item *ngFor="let item of cart.items" [productInput]="item"></app-cart-item> -->
     <table class="table" *ngFor="let order of orders">
         <thead class="thead-dark">
+          <p>Bestelling van: {{ order[0].firstname + " " + order[0].lastname }}</p>
           <p>Datum: {{ order[0].date | date:'short' }}</p>
           <tr>
             <th scope="col">#{{ order[0].id }}</th>

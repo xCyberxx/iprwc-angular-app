@@ -18,12 +18,14 @@ import { SignupComponent } from './signup/signup.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { CartOverviewComponent } from './cart-overview/cart-overview.component';
 import { CartItemComponent } from './cart-overview/cart-item/cart-item.component';
+import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 
 const appRoutes : Routes = [
   {path: '', component: HomeComponent },
   {path: 'admin', component: AdminComponent },
   {path: 'admin/edit/:id', component: EditItemComponent },
   {path: 'admin/add', component: AddItemComponent },
+  {path: 'admin/orders', component: AdminOrdersComponent },
   {path: 'signup', component: SignupComponent },
   {path: 'login', component: LoginComponent },
   {path: 'user', component: EditUserComponent },
@@ -45,7 +47,8 @@ const appRoutes : Routes = [
     SignupComponent,
     EditUserComponent,
     CartOverviewComponent,
-    CartItemComponent
+    CartItemComponent,
+    AdminOrdersComponent
   ],
   imports: [
     BrowserModule,

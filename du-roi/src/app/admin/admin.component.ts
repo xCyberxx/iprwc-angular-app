@@ -23,7 +23,7 @@ export class AdminComponent implements OnInit {
     this.producten = [];
     const api = Api.getApi();
     api.get("/item/all").then((response) => {
-      console.log(response.data.result);
+      // console.log(response.data.result);
       response.data.result.forEach(element => {
         console.log(element);
         this.producten.push(new Item(element.id, element.name, element.description, element.image, element.price));
