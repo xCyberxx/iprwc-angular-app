@@ -7,7 +7,7 @@ const TABLE = 'cart';
 exports.createCartItem = async (req, res) => {
     if (!await checkLoginToken(req, res)) return;
 
-    var {user_id, product_id} = req.body;
+    let {user_id, product_id} = req.body;
 
     if (typeof user_id === 'undefined' || user_id === '') {
         return res.status(200).json({error: true});

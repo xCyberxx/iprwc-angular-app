@@ -62,7 +62,7 @@ exports.updateItem = async (req, res) => {
 exports.createItem = async (req, res) => {
     if (!await checkLoginToken(req, res, "admin")) return;
 
-    var {name, description, image, price} = req.body;
+    let {name, description, image, price} = req.body;
 
     if (typeof name === 'undefined' || name === '') {
         return res.status(200).json({error: true});
