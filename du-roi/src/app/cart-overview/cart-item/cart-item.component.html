@@ -8,6 +8,6 @@
 <!-- <tr> -->
     <th scope="row"><img src="assets/img/items/{{product.image}}" alt="{{ product.description }}"></th>
     <td>{{ product.name }}</td>
-    <td>&euro;{{ product.price }}</td>
+    <td>&euro;{{ product.price | number:'1.2-2' }}</td>
     <td><button type="button" class="btn btn-danger" (click)="onDelete()">Verwijderen</button></td>
 <!-- </tr> -->

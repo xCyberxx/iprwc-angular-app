@@ -19,7 +19,7 @@
             <tr>
               <th></th>
               <td></td>
-              <td>Totaal: &euro;{{ cart.totalSum }}</td>
+              <td>Totaal: &euro;{{ cart.totalSum | number:'1.2-2' }}</td>
               <td><button type="button" class="btn btn-success" (click)="onPay()">Betalen</button></td>
             </tr>
         </tbody>

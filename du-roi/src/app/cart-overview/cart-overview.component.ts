@@ -15,7 +15,7 @@ export class CartOverviewComponent implements OnInit {
 
   constructor(private router : Router) { }
 
-  async ngOnInit(): Promise<void> {
+  async ngOnInit() {
     this.loadItems();
   }
 

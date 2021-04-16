@@ -80,47 +80,54 @@ export class Item {
     }
 
 
-    async updateItem(name : string, description : string, image : string, price : number) : Promise<number>
+    async updateItem(name : string, description : string, image : string, price : number)
     {
         const api = Api.getApi();
         const postData = {id: this._id, name: name, description: description, image: image, price: price};
-        console.log(postData);
-        await api.post('/item/update', postData).then((response) => {
-            console.log("Updated Item");
+
+        let result = await api.post('/item/update', postData).then((response) => {
+
+            return response.data.error ? 0 : 1;
         });
-        return 1
+        return result;
     }
 
-    static async createItem(name : string, description : string, image : string, price : number) : Promise<number>
+    static async createItem(name : string, description : string, image : string, price : number)
     {
         const api = Api.getApi();
         const postData = {name: name, description: description, image: image, price: price};
-        console.log(postData);
-        await api.post('/item/create', postData).then((response) => {
-            console.log("Created Item");
+
+        let result = await api.post('/item/create', postData).then((response) => {
+
+            return response.data.error ? 0 : 1;
         });
-        return 1
+        return result;
     }
 
-    static async deleteItem(id : string) : Promise<number>
+    static async deleteItem(id : string)
     {
         const api = Api.getApi();
         const postData = {id : id};
-        console.log(postData);
-        await api.post('/item/delete', postData).then((response) => {
-            console.log("Deleted Item " + postData.id);
+
+        let result = await api.post('/item/delete', postData).then((response) => {
+
         });
-        return 1
+        return result;
     }
 
-    static async getItem(nId : string) : Promise<Item>
+    static async getItem(nId : string)
     {
         const api = Api.getApi();
-        // const postData = {name: name, description: description, image: image, price: price};
-        // console.log(postData);
+
         let item : Item;
         await api.get('/item/' + nId).then((response) => {
-            console.log("got Item");
+            if(response.data.error)
+            {
+                // Geen juiste data ontvangen
+                item = null;
+                return;
+            }
+
             let value = response.data.result;
             item = new Item(value.id, value.name, value.description, value.image, value.price);
 

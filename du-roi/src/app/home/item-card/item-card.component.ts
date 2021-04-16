@@ -30,7 +30,7 @@ export class ItemCardComponent implements OnInit {
 
   }
 
-  async onClickAdd() : Promise<void>
+  async onClickAdd()
   {
     const user = User.getLoggedInUser();
 
@@ -55,22 +55,43 @@ export class ItemCardComponent implements OnInit {
       }
 
       //ingelogd
-      await Cart.addToCart(user.id, this.product.id);
+      let result = await Cart.addToCart(user.id, this.product.id);
 
       let timerInterval;
-      Swal.fire({
-        title: 'Toegevoegd aan winkelmandje',
-        // html: 'Artikel toegevoegd aan winkelmandje!',
-        icon: "success",
-        timer: 1000,
-        timerProgressBar: true,
-        showConfirmButton: false,
-        didOpen: () => {
-          
-        },
-      }).then((result) => {
+      if (result) 
+      {
+        Swal.fire({
+          title: 'Toegevoegd aan winkelmandje',
+          // html: 'Artikel toegevoegd aan winkelmandje!',
+          icon: "success",
+          timer: 1000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          didOpen: () => {
+            
+          },
+        }).then((result) => {
+  
+        });
+      }
+      else
+      {
+        Swal.fire({
+          title: 'Toevoegen mislukt',
+          // html: 'Artikel toegevoegd aan winkelmandje!',
+          icon: "error",
+          timer: 1000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          didOpen: () => {
+            
+          },
+        }).then((result) => {
+  
+        });
+      }
 
-      })  
+
 
     }
     else

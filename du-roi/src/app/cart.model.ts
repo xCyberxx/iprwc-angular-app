@@ -34,38 +34,37 @@ export class Cart {
         this.calculateSum();
     }
 
-    static async addToCart(nUserId: string, nProductId : string) : Promise<number>
+    static async addToCart(nUserId: string, nProductId : string)
     {
         const api = Api.getApi();
         const postData = {user_id: nUserId, product_id: nProductId};
-        console.log(postData);
-        await api.post('/cart/add', postData).then((response) => {
-            console.log("Created itemcart");
+
+        let result = await api.post('/cart/add', postData).then((response) => {
+
+            return response.data.error ? 0 : 1;
         });
-        return 1
+        return result;
     }
 
     static async getCartFromUser(nUserId : string)
     {
         const api = Api.getApi();
-        // const postData = {user_id: nUserId};
-        // console.log(postData);
+
         let cart;
         await api.get('/cart/get/' + nUserId).then((response) => {
-            console.log("got cart items");
-            console.log(response);
+
             cart = new Cart();
             //aanmaken cart item
             if (response.data.result == false)
                 return;
 
             response.data.result.forEach(async element => { // loop alle elementen binnen de item tabel
-                console.log(element);
+
                 // this._items.push(new Item(element.id, element.name, element.description, element.image, element.price));
 
 
                 await Item.getItem(element.product_id).then(item => {
-                    //console.log(response);
+
                     item.cart_id = element.id;
                     cart.addItem(item);
                 });
@@ -78,26 +77,28 @@ export class Cart {
         return cart;
     }
 
-    static async deleteFromCart(nId : string) : Promise<number>
+    static async deleteFromCart(nId : string)
     {
         const api = Api.getApi();
         const postData = {id: nId};
-        console.log(postData);
-        await api.post('/cart/delete', postData).then((response) => {
-            console.log("deleted itemcart");
+
+        let result = await api.post('/cart/delete', postData).then((response) => {
+
+            return response.data.error ? 0 : 1;
         });
-        return 1
+        return result
     }
 
-    static async payCart(nUserId: string) : Promise<number>
+    static async payCart(nUserId: string)
     {
         const api = Api.getApi();
         const postData = {user_id: nUserId};
-        console.log(postData);
-        await api.post('/cart/pay', postData).then((response) => {
-            console.log("Created itemcart");
+
+        let result = await api.post('/cart/pay', postData).then((response) => {
+
+            return response.data.error ? 0 : 1;
         });
-        return 1
+        return result
     }
 
 

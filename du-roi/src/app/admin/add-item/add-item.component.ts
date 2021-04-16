@@ -24,7 +24,7 @@ export class AddItemComponent implements OnInit {
     //   });
   }
 
-  async onAddItem(form : NgForm) : Promise<void>
+  async onAddItem(form : NgForm)
   {
     const value = form.value;
     await Item.createItem(value.productName, value.productDescription, value.productImage, value.productPrice);

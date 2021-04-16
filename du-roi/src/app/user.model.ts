@@ -50,16 +50,15 @@ export class User {
       this._lastname = nlastName;
     }
 
-    static async createUser(nEmail : string, nFirstname : string, nLastname : string, nPassword : string) : Promise<number>
+    static async createUser(nEmail : string, nFirstname : string, nLastname : string, nPassword : string)
     {
         const api = Api.getApi();
         const postData = {email: nEmail, firstname: nFirstname, lastname: nLastname, password: nPassword};
-        console.log(postData);
+
         let status = 0;
         try {
           await api.post('/user/create', postData).then((response) => {
-            console.log("creating user");
-            console.log(response);
+
             if(response.data.result)
             {
               status = 1;
@@ -72,19 +71,20 @@ export class User {
         return status;
     }
 
-    static async updateUser(nId: string, nEmail : string, nFirstname : string, nLastname : string, nPassword : string) : Promise<number>
+    static async updateUser(nId: string, nEmail : string, nFirstname : string, nLastname : string, nPassword : string)
     {
         const api = Api.getApi();
         const postData = {id: nId, email: nEmail, firstname: nFirstname, lastname: nLastname, password: nPassword};
         console.log("updating user.");
         console.log(postData);
-        await api.post('/user/update', postData).then((response) => {
+        let result = await api.post('/user/update', postData).then((response) => {
             console.log("updated user");
+            return response.data.error ? 0 : 1;
         });
-        return 1
+        return result;
     }
 
-    static async Login(nEmail : string, nPassword : string) : Promise<number>
+    static async Login(nEmail : string, nPassword : string)
     {
         const api = Api.getApi();
         const postData = {email: nEmail, password: nPassword};
@@ -95,12 +95,14 @@ export class User {
             console.log("Login failed..");
             return 0;
           } else {
+            console.log("Success");
             console.log(response.data.token);
             Cookie.set('user_token', response.data.token, 7, '/');
             //this.router.navigate([this.router.url + '/dashboard']);
             return 1;
           }
         });
+        console.log(result);
         return result;
     }
 

@@ -31,7 +31,7 @@ exports.getItemsFromId = (req, res) => {
         return res.status(200).json({error: true});
     }
 
-    db.query(`SELECT ${TABLE}.* FROM cart RIGHT JOIN(item) ON (${TABLE}.product_id = item.id) WHERE ${TABLE}.user_id = 6 AND ${TABLE}.isActive=1 AND item.isActive = 1;`, function (err, result) {
+    db.query(`SELECT ${TABLE}.* FROM cart RIGHT JOIN(item) ON (${TABLE}.product_id = item.id) WHERE ${TABLE}.user_id = ${mysql.escape(id)} AND ${TABLE}.isActive=1 AND item.isActive = 1;`, function (err, result) {
         if (err) return res.status(200).json({error: true});
         res.status(200).json({
             result: result.length !== 0 ? result : false
