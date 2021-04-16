@@ -5,7 +5,7 @@ const {checkLoginToken} = require("../utils/authManager");
 const TABLE = 'item';
 
 exports.getAllItems = (req, res) => {
-    db.query(`SELECT * FROM ${TABLE};`, function (err, result) {
+    db.query(`SELECT * FROM ${TABLE} WHERE isActive = 1;`, function (err, result) {
         if (err) return res.status(200).json({error: true});
         res.status(200).json({
             result: result.length !== 0 ? result : false
@@ -20,7 +20,7 @@ exports.getItem = (req, res) => {
         return res.status(200).json({error: true});
     }
 
-    db.query(`SELECT * FROM ${TABLE} WHERE id = ${mysql.escape(id)};`, function (err, result) {
+    db.query(`SELECT * FROM ${TABLE} WHERE id = ${mysql.escape(id)} AND isActive = 1;`, function (err, result) {
         if (err) return res.status(200).json({error: true});
         res.status(200).json({
             result: result.length !== 0 ? result[0] : false
@@ -95,7 +95,14 @@ exports.deleteItem = async (req, res) => {
         return res.status(200).json({error: true});
     }
 
-    db.query(`DELETE FROM ${TABLE} WHERE id = ${mysql.escape(id)};`, function (err, result) {
+    // db.query(`DELETE FROM ${TABLE} WHERE id = ${mysql.escape(id)};`, function (err, result) {
+    //     if (err) return res.status(200).json({error: true});
+    //     res.status(200).json({
+    //         result: result.affectedRows >= 1
+    //     });
+    // });
+
+    db.query(`CALL deleteItem(${mysql.escape(id)})`, function (err, result) {
         if (err) return res.status(200).json({error: true});
         res.status(200).json({
             result: result.affectedRows >= 1
