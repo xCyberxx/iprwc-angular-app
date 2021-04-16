@@ -19,15 +19,12 @@ export class AdminItemCardComponent implements OnInit {
   @Input() productInput : Item;
 
   ngOnInit(): void {
-    // console.log("created item");
-    //this.product = new Item("idrandom", "Franse Empire Stoel", "Deze prachtige franse empire stoel is gemaakt in 1813", "chair2.jpg", 149.99);
-    // console.log(this.productInput);
     this.product = this.productInput;
   }
 
   onClick() : void {
 
-    console.log('Toevoegen item ' + this.product.name + " aan winkelwagen");
+    
 
   }
 
@@ -45,19 +42,36 @@ export class AdminItemCardComponent implements OnInit {
     }).then(async (result) => {
       if (result.isConfirmed) {
 
-        await Item.deleteItem(this.product.id);
-        Swal.fire(
-          'Verwijderd!',
-          'Het artikel is verwijderd.',
-          'success'
-        );
+        let result = await Item.deleteItem(this.product.id);
+        if (result)
+        {
+          // Verwijderen succesvol
+          Swal.fire(
+            'Verwijderd!',
+            'Het artikel is verwijderd.',
+            'success'
+          );
+        }
+        else
+        {
+          // Verwijderen mislukt
+          Swal.fire({
+            title: 'Verwijderen mislukt',
+            // html: 'Artikel toegevoegd aan winkelmandje!',
+            icon: "error",
+            timer: 1000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            didOpen: () => {
+              
+            },
+          }).then((result) => {
+    
+          });
+        }
+        
         // Herladen items na verwijderen
         this.reloadItems.emit();
-        // setTimeout(() => 
-        // {
-        //   this.reloadItems.emit();
-        // },
-        // 500);
         
       }
     })

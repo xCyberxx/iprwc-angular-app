@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   {
     const value = form.value;
     let result = await User.Login(value.email, value.password);
-    console.log(result);
+    
     const user = User.getLoggedInUser();
     if(!user)
     {
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   
       });
     }
-    console.log(user.userGroup);
+
     if(result) // is 1
     {
       switch(user.userGroup)
@@ -68,6 +68,5 @@ export class LoginComponent implements OnInit {
     }).then((result) => {
 
     });
-    console.log("Attempted to login.");
   }
 }

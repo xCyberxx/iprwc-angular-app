@@ -43,7 +43,7 @@ exports.deleteCartItem = async (req, res) => {
     if (!await checkLoginToken(req, res, '')) return;
 
     const {id} = req.body;
-    console.log(id);
+
     if (typeof id === 'undefined') {
         return res.status(200).json({error: true});
     }

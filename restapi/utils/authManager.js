@@ -12,16 +12,12 @@ exports.checkLoginToken = async (req, res, minimumPermissionGroup = '') => {
             const token = authHeader.split(' ')[1];
 
             jwt.verify(token, this.secret, (err, decoded) => {
-                console.log(decoded);
                 if (err) reject();
                 const permissionGroup = decoded.user_group;
-                console.log(permissionGroup);
 
                 if (minimumPermissionGroup === 'admin' && permissionGroup !== 'admin') {
                     reject();
-                    console.log(2);
                 }
-                console.log(4);
                 db.query(`SELECT * FROM user WHERE id=${mysql.escape(decoded.id)} AND user_group=${mysql.escape(permissionGroup)};`, function (err, result) {
                     if (err || result.length === 0) reject();
 

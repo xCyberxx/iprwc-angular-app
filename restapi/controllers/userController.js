@@ -32,7 +32,6 @@ exports.createUser = async (req, res) => {
     }
 
     const password_hash = await hashPassword(password);
-    console.log(password_hash);
 
     db.query(`INSERT INTO ${TABLE} (email, firstname, lastname, password_hash, user_group) VALUES (${mysql.escape(email)}, ${mysql.escape(firstname)}, ${mysql.escape(lastname)}, ${mysql.escape(password_hash)}, ${mysql.escape(user_group)});`, function (err, result) {
         if (err) return res.status(400).json({error: true});

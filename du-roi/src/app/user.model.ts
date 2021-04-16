@@ -75,10 +75,9 @@ export class User {
     {
         const api = Api.getApi();
         const postData = {id: nId, email: nEmail, firstname: nFirstname, lastname: nLastname, password: nPassword};
-        console.log("updating user.");
-        console.log(postData);
+
         let result = await api.post('/user/update', postData).then((response) => {
-            console.log("updated user");
+
             return response.data.error ? 0 : 1;
         });
         return result;
@@ -88,21 +87,20 @@ export class User {
     {
         const api = Api.getApi();
         const postData = {email: nEmail, password: nPassword};
-        console.log(postData);
+
         let result = await api.post('/user/checkUserCredentials', postData).then((response) => {
           if (response.data.login !== 'success') {
             // this.success = false;
-            console.log("Login failed..");
+
             return 0;
           } else {
-            console.log("Success");
-            console.log(response.data.token);
+
             Cookie.set('user_token', response.data.token, 7, '/');
             //this.router.navigate([this.router.url + '/dashboard']);
             return 1;
           }
         });
-        console.log(result);
+
         return result;
     }
 

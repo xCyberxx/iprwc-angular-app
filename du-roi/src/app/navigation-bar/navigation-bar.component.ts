@@ -16,7 +16,7 @@ export class NavigationBarComponent implements OnInit {
     router.events.subscribe((val) => {
       // see also 
       this.reloadUser();
-      console.log(val instanceof NavigationEnd) 
+      // console.log(val instanceof NavigationEnd) 
   });
 
   }

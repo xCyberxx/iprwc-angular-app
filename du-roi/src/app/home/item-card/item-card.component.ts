@@ -18,15 +18,11 @@ export class ItemCardComponent implements OnInit {
   @Input() productInput : Item;
 
   ngOnInit(): void {
-    // console.log("created item");
-    //this.product = new Item("idrandom", "Franse Empire Stoel", "Deze prachtige franse empire stoel is gemaakt in 1813", "chair2.jpg", 149.99);
-    // console.log(this.productInput);
     this.product = this.productInput;
   }
 
   onClick() : void {
 
-    console.log('Toevoegen item ' + this.product.name + " aan winkelwagen");
 
   }
 

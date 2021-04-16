@@ -16,15 +16,12 @@ export class EditItemComponent implements OnInit {
 
   ngOnInit(): void {
     let selectedID = this.route.snapshot.params['id'];
-    console.log(selectedID);
 
     const api = Api.getApi();
     api.get("/item/" + selectedID).then(response =>
       {
         let data = response.data.result;
-        // console.log(data);
         this.currentProduct = new Item(data.id, data.name, data. description, data.image, data.price);
-        console.log(this.currentProduct);
       });
       
   }

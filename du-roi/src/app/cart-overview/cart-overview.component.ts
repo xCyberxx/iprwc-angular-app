@@ -27,7 +27,7 @@ export class CartOverviewComponent implements OnInit {
       {
         this.cart = response;
       });
-    console.log(this.cart);
+
   }
 
   async onPay()
@@ -51,23 +51,39 @@ export class CartOverviewComponent implements OnInit {
     else
     {
 
-      await Cart.payCart(this.user.id).then(response =>
+      let result = await Cart.payCart(this.user.id)
+      if (result)
       {
-        console.log("paid");
-      });
-      Swal.fire({
-        title: 'Betaling succesvol!',
-        // html: 'Artikel toegevoegd aan winkelmandje!',
-        icon: "success",
-        timer: 2000,
-        timerProgressBar: true,
-        showConfirmButton: false,
-        didOpen: () => {
-          
-        },
-      }).then((result) => {
-
-      });
+        Swal.fire({
+          title: 'Betaling succesvol!',
+          // html: 'Artikel toegevoegd aan winkelmandje!',
+          icon: "success",
+          timer: 2000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          didOpen: () => {
+            
+          },
+        }).then((result) => {
+  
+        });
+      }
+      else
+      {
+        Swal.fire({
+          title: 'Betaling mislukt',
+          // html: 'Artikel toegevoegd aan winkelmandje!',
+          icon: "error",
+          timer: 2000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          didOpen: () => {
+            
+          },
+        }).then((result) => {
+  
+        });
+      }
 
       this.router.navigateByUrl('/');
     }

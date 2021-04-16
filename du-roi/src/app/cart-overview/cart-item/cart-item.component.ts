@@ -23,12 +23,11 @@ export class CartItemComponent implements OnInit {
 
   onClick(input)
   {
-    console.log(this.product.name);
+
   }
 
   async onDelete()
   {
-    console.log("deleting cart_id: " + this.cart_id);
     await Cart.deleteFromCart(this.cart_id);
     this.reloadItems.emit();
   }

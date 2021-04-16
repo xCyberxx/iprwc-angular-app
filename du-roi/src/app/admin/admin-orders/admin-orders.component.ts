@@ -30,7 +30,6 @@ export class AdminOrdersComponent implements OnInit {
   private loadOrders() {
     const api = Api.getApi();
     api.get("/order/all").then((response) => {
-      // console.log(response.data.result);
 
       let grouped = this.groupByKey(response.data.result, 'id');
 

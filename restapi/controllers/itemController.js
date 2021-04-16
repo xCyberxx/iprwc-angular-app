@@ -72,7 +72,6 @@ exports.createItem = async (req, res) => {
     }
     if (typeof image === 'undefined' || image === '') {
          image = "defaultimg.png";
-         console.log('setting default image');
      }
     if (typeof price === 'undefined' || price === '') {
         return res.status(200).json({error: true});

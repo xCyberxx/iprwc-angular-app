@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
     await User.createUser(value.email, value.firstname, value.lastname, value.password).then(response => {
       result = response;
     });
-    console.log(result);
+
     if (result == 0)
     {
       //niet geregistreerd.
@@ -43,7 +43,7 @@ export class SignupComponent implements OnInit {
       });
       return;
     }
-    console.log("Done creating..");
+
     Swal.fire({
       title: 'Geregisteerd',
       // html: 'Artikel toegevoegd aan winkelmandje!',

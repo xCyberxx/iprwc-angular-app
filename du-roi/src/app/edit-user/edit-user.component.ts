@@ -42,7 +42,6 @@ export class EditUserComponent implements OnInit {
 
     });
     this.router.navigateByUrl("/");
-    console.log("Done creating..");
   }
 
   private groupByKey(array, key) {
@@ -56,7 +55,7 @@ export class EditUserComponent implements OnInit {
   private loadOrders() {
     const api = Api.getApi();
     api.get("/order/user/" + this.user.id).then((response) => {
-      console.log(response);
+
 
       let grouped = this.groupByKey(response.data.result, 'id');
 

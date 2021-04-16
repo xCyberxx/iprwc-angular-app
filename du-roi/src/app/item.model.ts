@@ -110,7 +110,7 @@ export class Item {
         const postData = {id : id};
 
         let result = await api.post('/item/delete', postData).then((response) => {
-
+            return response.data.error ? 0 : 1;
         });
         return result;
     }

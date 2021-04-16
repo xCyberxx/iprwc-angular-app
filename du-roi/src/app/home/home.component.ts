@@ -18,9 +18,7 @@ export class HomeComponent implements OnInit {
     //Ophalen items via de rest api
     const api = Api.getApi();
     api.get("/item/all").then((response) => {
-      console.log(response.data.result);
       response.data.result.forEach(element => { // loop alle elementen binnen de item tabel
-        console.log(element);
         this.producten.push(new Item(element.id, element.name, element.description, element.image, element.price));
 
       });
